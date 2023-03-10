@@ -11,11 +11,15 @@ const config = {
     name: pkg.name,
     file: './index.js',
     format: 'umd',
-    globals: {},
-    banner: `/*! [banner info] !*/`,
-    footer: '/* [footer info] */',
+    globals: {
+      react: 'React',
+    },
+    banner: `/*! react-marquease !*/`,
+    footer: '/* Copyright 2023 - Ryan Hefner - https://www.ryanhefner.com */',
   },
-  external: [],
+  external: [
+    'react',
+  ],
   plugins: [
     babel({
       exclude: 'node_modules/**',

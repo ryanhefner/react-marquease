@@ -7,6 +7,9 @@ es
 umd
 /*.js
 
+# Include jest config
+!jest.config.cjs
+
 # Include Rollup config
 !rollup.config.js
 

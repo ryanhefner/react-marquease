@@ -1,5 +1,6 @@
 # Build / Test files
 coverage
+src/__snapshots__
 tools
 **/*.test.js
 
