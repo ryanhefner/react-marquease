@@ -52,7 +52,7 @@
     "push-release": "git push origin main && git push --tags",
     "dtslint": "dtslint types",
     "test": "snyk test && jest",
-    "test:ci": "jest",
+    "test:ci": "jest --coverage",
     "types": "tsc"
   },
   "peerDependencies": {
