@@ -31,7 +31,7 @@ import Marquee from 'react-marquease'
 
 const ExampleComponent = () => (
   <Marquee>
-    <p>If my horse had a twin, I would name it, Sin. If my horse had a course, I would track is worst.<p>
+    <p>Scrolly text, moving through, my browser window, moving smooth.<p>
   </Marquee>
 )
 ```
