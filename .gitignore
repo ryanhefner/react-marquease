@@ -5,7 +5,7 @@ node_modules
 coverage
 es
 umd
-/*.js
+/*.cjs
 
 # Include jest config
 !jest.config.cjs

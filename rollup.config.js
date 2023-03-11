@@ -9,7 +9,7 @@ const config = {
   input: 'src/index.js',
   output: {
     name: pkg.name,
-    file: './index.js',
+    file: './index.cjs',
     format: 'umd',
     globals: {
       react: 'React',

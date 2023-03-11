@@ -32,12 +32,12 @@
     "src",
     "types",
     "umd",
-    "index.js"
+    "index.cjs"
   ],
   "directories": {
     "lib": "/src"
   },
-  "main": "index.js",
+  "main": "index.cjs",
   "module": "es/index.js",
   "jsnext:main": "src/index.js",
   "types": "types",
