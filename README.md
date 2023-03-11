@@ -8,7 +8,7 @@
 [![CircleCI](https://img.shields.io/circleci/build/github/ryanhefner/react-marquease?style=flat-square)](https://circleci.com/gh/ryanhefner/react-marquease)
 ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ryanhefner/react-marquease?style=flat-square)
 
-HTML marquees, the react way (with some handy control features)
+HTML `<marquee>`s, the react way (with some handy control features)
 
 ## Install
 
