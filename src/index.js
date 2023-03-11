@@ -1,11 +1,4 @@
-import React, {
-  Component,
-  forwardRef,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
 
 /**
  * react-marquease
