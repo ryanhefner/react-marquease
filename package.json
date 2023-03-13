@@ -1,6 +1,6 @@
 {
   "name": "react-marquease",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "HTML marquees, the react way (with some handy control features)",
   "repository": {
     "type": "git",
