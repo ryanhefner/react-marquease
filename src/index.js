@@ -15,6 +15,7 @@ const Marquee = forwardRef(
     },
     ref
   ) => {
+    const [mounted, setMounted] = useState(false)
     const [clientHeight, setClientHeight] = useState(null)
     const [clientWidth, setClientWidth] = useState(null)
     const [offset, setOffset] = useState(defaultOffset)
@@ -31,6 +32,7 @@ const Marquee = forwardRef(
       window.addEventListener('resize', handleResize)
       setClientHeight(childrenRef.current?.clientHeight || 0)
       setClientWidth(childrenRef.current?.clientWidth || 0)
+      setMounted(true)
 
       return () => {
         window.removeEventListener('resize', handleResize)
@@ -92,6 +94,8 @@ const Marquee = forwardRef(
           </div>
         ))
     }, [children, clientWidth, reverse])
+
+    if (!mounted) return null
 
     return (
       <div
