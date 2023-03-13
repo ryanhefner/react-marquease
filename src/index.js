@@ -24,20 +24,25 @@ const Marquee = forwardRef(
     const intervalRef = useRef(null)
 
     useEffect(() => {
-      const handleResize = () => {
+      setMounted(true)
+    }, [])
+
+    useEffect(() => {
+      if (mounted) {
+        const handleResize = () => {
+          setClientHeight(childrenRef.current?.clientHeight || 0)
+          setClientWidth(childrenRef.current?.clientWidth || 0)
+        }
+
+        window.addEventListener('resize', handleResize)
         setClientHeight(childrenRef.current?.clientHeight || 0)
         setClientWidth(childrenRef.current?.clientWidth || 0)
-      }
 
-      window.addEventListener('resize', handleResize)
-      setClientHeight(childrenRef.current?.clientHeight || 0)
-      setClientWidth(childrenRef.current?.clientWidth || 0)
-      setMounted(true)
-
-      return () => {
-        window.removeEventListener('resize', handleResize)
+        return () => {
+          window.removeEventListener('resize', handleResize)
+        }
       }
-    }, [])
+    }, [mounted])
 
     useEffect(() => {
       const tick = () => {
