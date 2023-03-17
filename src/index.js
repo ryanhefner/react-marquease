@@ -106,7 +106,11 @@ const Marquee = forwardRef(
       <div
         ref={ref}
         {...rest}
-        style={{ position: 'relative', height: clientHeight }}
+        style={{
+          position: 'relative',
+          height: clientHeight,
+          overflow: 'hidden',
+        }}
       >
         <div
           ref={childrenRef}
