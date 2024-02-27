@@ -15,7 +15,7 @@ const config = {
       react: 'React',
     },
     banner: `/*! react-marquease !*/`,
-    footer: '/* Copyright 2023 - Ryan Hefner - https://www.ryanhefner.com */',
+    footer: '/* Copyright 2023-2024 — Ryan Hefner — https://www.ryanhefner.com */',
   },
   external: [
     'react',
