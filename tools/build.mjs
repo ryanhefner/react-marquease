@@ -13,13 +13,13 @@ const exec = (command, extraEnv) => {
 
 console.log('Building CommonJS modules ...')
 
-exec('babel src -d . --out-file-extension .cjs --ignore src/__mocks__,__tests__,**/*.test.js', {
+exec('babel src -d . --out-file-extension .cjs --ignore src/__mocks__,__tests__,**/*.test.js,**/*.test.jsx', {
   BABEL_ENV: 'cjs',
 })
 
 console.log('\nBuilding ES modules ...')
 
-exec('babel src -d es --ignore src/__mocks__,__tests__,**/*.test.js', {
+exec('babel src -d es --ignore src/__mocks__,__tests__,**/*.test.js,**/*.test.jsx', {
   BABEL_ENV: 'es',
 })
 

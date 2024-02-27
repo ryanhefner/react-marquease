@@ -6,7 +6,7 @@ import { terser } from 'rollup-plugin-terser'
 import pkg from './package.json' assert { type: 'json' }
 
 const config = {
-  input: 'src/index.js',
+  input: 'src/index.jsx',
   output: {
     name: pkg.name,
     file: './index.cjs',
@@ -15,20 +15,18 @@ const config = {
       react: 'React',
     },
     banner: `/*! react-marquease !*/`,
-    footer: '/* Copyright 2023 - Ryan Hefner - https://www.ryanhefner.com */',
+    footer: '/* Copyright 2023-2024 — Ryan Hefner — https://www.ryanhefner.com */',
   },
   external: [
     'react',
   ],
   plugins: [
+    resolve({ extensions: ['.js', '.jsx'] }),
     babel({
       exclude: 'node_modules/**',
       babelHelpers: 'runtime',
     }),
-    resolve(),
-    commonjs({
-      include: /node_modules/,
-    }),
+    commonjs(),
     json(),
   ],
 }

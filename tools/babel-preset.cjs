@@ -12,6 +12,11 @@ if (process.env.NODE_ENV === 'production') {
   plugins.push('babel-plugin-dev-expression')
 }
 
+// Convert imports/requires to include .cjs extensions for CommonJS builds.
+if (!building) {
+  plugins.push(['babel-plugin-add-import-extension', { extension: 'cjs' }])
+}
+
 module.exports = function () {
   return {
     env: {
