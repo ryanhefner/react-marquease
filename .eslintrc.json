@@ -4,6 +4,7 @@
     "es2021": true,
     "node": true
   },
+  "plugins": ["prettier"],
   "extends": [
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
@@ -27,10 +28,6 @@
           }
         ]
       }
-    },
-    {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
     }
   ],
   "parserOptions": {

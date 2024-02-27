@@ -7,11 +7,13 @@ es
 umd
 /*.cjs
 
-# Include jest config
-!jest.config.cjs
+# Example files
+TestComponent
+!src/TestComponent
 
 # Include Rollup config
 !rollup.config.js
+!vite.config.js
 
 # Misc
 .DS_Store
