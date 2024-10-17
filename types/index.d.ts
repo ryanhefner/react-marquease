@@ -1,11 +1,11 @@
-import * as React from 'react'
-interface MarqueeProps extends React.PropsWithChildren {
+import { ForwardRefExoticComponent, PropsWithChildren } from 'react'
+interface MarqueeProps extends PropsWithChildren {
   defaultOffset?: number
   reverse?: boolean
   pause?: boolean
   speed?: number
 }
 
-declare const Marquee: React.ForwardRefExoticComponent<MarqueeProps>
+declare const Marquee: ForwardRefExoticComponent
 
 export default Marquee
