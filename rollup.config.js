@@ -3,7 +3,10 @@ import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import resolve from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
-import pkg from './package.json' assert { type: 'json' }
+import { createRequire } from 'module'
+
+const require = createRequire(import.meta.url)
+const pkg = require('./package.json')
 
 const config = {
   input: 'src/index.jsx',
@@ -14,12 +17,10 @@ const config = {
     globals: {
       react: 'React',
     },
-    banner: `/*! react-marquease !*/`,
-    footer: '/* Copyright 2023-2024 — Ryan Hefner — https://www.ryanhefner.com */',
+    banner: `/*! ${pkg.name} !*/`,
+    footer: `/* Copyright 2023 - ${new Date().getFullYear()} - ${pkg.author} */`,
   },
-  external: [
-    'react',
-  ],
+  external: ['react'],
   plugins: [
     resolve({ extensions: ['.js', '.jsx'] }),
     babel({
