@@ -2,7 +2,10 @@ import fs from 'fs'
 import { execSync } from 'child_process'
 import prettyBytes from 'pretty-bytes'
 import { gzipSizeSync } from 'gzip-size'
-import pkg from '../package.json' assert { type: 'json' }
+import { createRequire } from 'module'
+
+const require = createRequire(import.meta.url)
+const pkg = require('../package.json')
 
 const exec = (command, extraEnv) => {
   execSync(command, {
@@ -13,15 +16,21 @@ const exec = (command, extraEnv) => {
 
 console.log('Building CommonJS modules ...')
 
-exec('babel src -d . --out-file-extension .cjs --ignore src/__mocks__,__tests__,**/*.test.js,**/*.test.jsx', {
-  BABEL_ENV: 'cjs',
-})
+exec(
+  'babel src -d . --out-file-extension .cjs --ignore src/__mocks__,__tests__,**/*.test.js,**/*.test.jsx',
+  {
+    BABEL_ENV: 'cjs',
+  },
+)
 
 console.log('\nBuilding ES modules ...')
 
-exec('babel src -d es --ignore src/__mocks__,__tests__,**/*.test.js,**/*.test.jsx', {
-  BABEL_ENV: 'es',
-})
+exec(
+  'babel src -d es --ignore src/__mocks__,__tests__,**/*.test.js,**/*.test.jsx',
+  {
+    BABEL_ENV: 'es',
+  },
+)
 
 console.log(`\nBuilding ${pkg.name}.js ...`)
 

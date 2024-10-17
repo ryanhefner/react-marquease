@@ -4,24 +4,14 @@ import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react'
  * react-marquease
  */
 const Marquee = forwardRef(
-  (
-    {
-      children,
-      defaultOffset = 0,
-      reverse = false,
-      pause = false,
-      speed = 1,
-      ...rest
-    },
-    ref
-  ) => {
+  ({ children, reverse = false, pause = false, speed = 1, ...rest }, ref) => {
     const [mounted, setMounted] = useState(false)
     const [clientHeight, setClientHeight] = useState(null)
     const [clientWidth, setClientWidth] = useState(null)
-    const [offset, setOffset] = useState(defaultOffset)
 
+    const animationRef = useRef(null)
     const childrenRef = useRef(null)
-    const intervalRef = useRef(null)
+    const marqueeRef = useRef(null)
 
     useEffect(() => {
       setMounted(true)
@@ -45,37 +35,35 @@ const Marquee = forwardRef(
     }, [mounted])
 
     useEffect(() => {
-      const tick = () => {
-        const direction = reverse ? 1 : -1
+      const relativeSpeed = ((clientWidth / 60) * 1000) / speed
 
-        setOffset((prevState) => {
-          let nextOffset = prevState + direction * speed
+      animationRef.current = marqueeRef.current?.animate(
+        [
+          { transform: 'translateX(0px)' },
+          {
+            transform: `translateX(${reverse ? `${clientWidth}px` : `-${clientWidth}px`})`,
+          },
+        ],
+        { duration: relativeSpeed, iterations: Infinity },
+      )
+    }, [clientWidth, reverse, speed])
 
-          if (Math.abs(nextOffset) >= (childrenRef.current?.clientWidth || 0)) {
-            nextOffset = 0
-          }
-
-          return nextOffset
-        })
+    useEffect(() => {
+      if (animationRef.current) {
+        if (pause) {
+          animationRef.current.pause()
+        } else {
+          animationRef.current.play()
+        }
       }
-
-      clearInterval(intervalRef.current)
-
-      if (!pause) {
-        intervalRef.current = window.setInterval(tick, 50)
-      }
-
-      return () => {
-        clearInterval(intervalRef.current)
-      }
-    }, [childrenRef, intervalRef, pause, reverse, speed])
+    }, [pause])
 
     const childClones = useMemo(() => {
       if (typeof window === 'undefined') return null
 
       const cloneCount = Math.max(
         2,
-        clientWidth ? Math.ceil(window.innerWidth / (clientWidth / 2)) : 0
+        clientWidth ? Math.ceil(window.innerWidth / (clientWidth / 2)) : 0,
       )
 
       const direction = reverse ? 1 : -1
@@ -109,7 +97,7 @@ const Marquee = forwardRef(
         style={{
           position: 'relative',
           height: clientHeight,
-          overflow: 'hidden',
+          overflow: 'clip',
         }}
       >
         <div
@@ -118,15 +106,12 @@ const Marquee = forwardRef(
         >
           {children}
         </div>
-        <div
-          data-qa="scroller"
-          style={{ transform: `translateX(${offset}px)` }}
-        >
+        <div aria-hidden="true" data-qa="scroller" ref={marqueeRef}>
           {childClones}
         </div>
       </div>
     )
-  }
+  },
 )
 
 Marquee.displayName = 'Marquee'

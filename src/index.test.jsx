@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { render } from '@testing-library/react'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { configMocks, mockAnimationsApi } from 'jsdom-testing-mocks'
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest'
 import Marquee from './index'
 
+configMocks({ afterAll, afterEach })
+
 describe('react-marquease', () => {
+  mockAnimationsApi()
+
   beforeAll(() => {
     window.innerWidth = 1024
   })
@@ -14,7 +27,7 @@ describe('react-marquease', () => {
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('renders 5 clones', async () => {
+  it('renders 2 clones', async () => {
     const { getAllByText } = render(<Marquee>Test</Marquee>)
 
     await getAllByText('Test')

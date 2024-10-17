@@ -2,6 +2,18 @@
   "name": "react-marquease",
   "version": "0.1.6",
   "description": "HTML marquees, the react way (with some handy control features)",
+  "keywords": [
+    "react",
+    "marquee",
+    "marquees",
+    "html",
+    "scroll",
+    "scrolling",
+    "text",
+    "animation",
+    "component",
+    "react-component"
+  ],
   "repository": {
     "type": "git",
     "url": "ryanhefner/react-marquease"
@@ -42,11 +54,11 @@
   "jsnext:main": "src/index.jsx",
   "types": "types",
   "scripts": {
-    "clean": "rimraf index.js es umd",
-    "prebuild": "npm run clean",
+    "clean": "rimraf index.cjs es umd",
+    "prebuild": "yarn clean",
     "build": "node ./tools/build.mjs",
     "watch": "babel ./src -d . --ignore __mocks__,__tests__,**/*.test.js,**/*.test.jsx --watch",
-    "prepare": "npm run build",
+    "prepare": "yarn build",
     "prepublishOnly": "node ./tools/build.mjs",
     "prettier": "prettier -c",
     "push-release": "git push origin main && git push --tags",
@@ -89,6 +101,7 @@
     "global-jsdom": "^24.0.0",
     "gzip-size": "^7.0.0",
     "jsdom": "^24.0.0",
+    "jsdom-testing-mocks": "^1.13.1",
     "prettier": "^3.0.3",
     "pretty-bytes": "^6.0.0",
     "react": "^18.2.0",
@@ -100,5 +113,6 @@
     "snyk": "^1.437.3",
     "typescript": "^5.3.3",
     "vitest": "^1.0.1"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

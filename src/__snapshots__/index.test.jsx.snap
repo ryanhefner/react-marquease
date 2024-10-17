@@ -3,7 +3,7 @@
 exports[`react-marquease > renders 1`] = `
 <DocumentFragment>
   <div
-    style="position: relative; overflow: hidden; height: 0px;"
+    style="position: relative; overflow: clip; height: 0px;"
   >
     <div
       style="position: absolute; top: -9999px; left: -9999px;"
@@ -11,8 +11,8 @@ exports[`react-marquease > renders 1`] = `
       Test
     </div>
     <div
+      aria-hidden="true"
       data-qa="scroller"
-      style="transform: translateX(0px);"
     >
       <div
         data-marquee-child="0"
